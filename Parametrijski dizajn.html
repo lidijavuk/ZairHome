@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parametrijski dizajn – ZAIR HOME, Bar</title>
+  <link rel="stylesheet" href="Style.css"/>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-top">
+      <a href="index.html" class="logo"><span class="logo-z">Z</span>AIR<span class="logo-home">HOME</span></a>
+      <span class="header-tagline">Tepisi &amp; Dekoracija · Bar, Crna Gora</span>
+      <button class="nav-toggle" aria-label="Otvori meni">&#9776;</button>
+    </div>
+    <div class="header-bottom">
+      <nav>
+        <a href="index.html#o-nama">O nama</a>
+        <!-- <a href="katalog.html">Katalog</a> -->
+        <a href="Tepisi.html">Tepisi</a>
+        <a href="Kupatilske staze.html">Kupatilske staze</a>
+        <a href="Dekoracija.html" class="nav-active" aria-current="page">Dekoracija</a>
+        <a href="Parametrijski dizajn.html" class="nav-active" aria-current="page">Parametrijski dizajn</a>
+        <a href="index.html#lokacija">Lokacija</a>
+        <a href="index.html#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero reveal">
+    <div class="container">
+      <a href="index.html" class="back-link">Nazad na početnu</a>
+      <p class="label">Katalog · Parametrijski dizajn</p>
+      <h1>Parametrijski dizajn</h1>
+      <p class="page-desc">Dizajn koji se prilagođava specifičnim potrebama i preferencijama klijenata.</p>
+      <div class="page-hero-meta">
+        <div class="meta-item"><span class="meta-label">Modela</span><span class="meta-value" id="page-total">X</span></div>
+        <div class="meta-item"><span class="meta-label">Materijali</span><span class="meta-value">Pamuk</span></div>
+        <div class="meta-item"><span class="meta-label">Dimenzije</span><span class="meta-value">45×45 – 130×170 cm</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROIZVODI -->
+  <section class="section-products reveal">
+    <div class="container">
+
+      <!--
+        FOTOGRAFIJE: samo stavi sliku u folder images/dekoracija/ pod imenom
+        koje već piše u src="..." ispod (npr. images/dekoracija/dekorativni-jastuci.jpg).
+        Ništa drugo ne treba mijenjati — čim slika postoji, kartica postaje
+        klikabilna i klik otvara uveličani prikaz (lightbox). Dok slika ne
+        postoji, kartica automatski prikazuje "Dodaj fotografiju".
+
+        NAPOMENA: ova stranica je "izvor istine" za dekoraciju — katalog.html
+        automatski povlači ove iste kartice, ne treba ih dodavati na 2 mjesta.
+      -->
+
+      <div class="product-grid" id="product-grid">
+
+        <article class="product-card">
+          <div class="product-img">
+            <img src="images/parametrijski dizajn/pdizajn1.jpg" alt="Parametrijski dizajn">
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Parametrijski dizajn</span>
+            <h3>Parametrijski dizajn</h3>
+            <p class="product-desc">OPIS</p>
+            <div class="product-footer">
+              <span class="price">1000 €</span>
+              <span class="product-note">Parametrijski dizajn</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="catalog-note">* Cijene su informativne i mogu se mijenjati. Posjetite nas ili nazovite za aktuelne cijene i dostupnost.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="page-cta reveal">
+    <div class="container page-cta-inner">
+      <div>
+        <p class="label">Posjetite nas</p>
+        <h2>Pogledajte parametrijski dizajn uživo</h2>
+        <p>Bulevar revolucije G10, Bar · Ponedeljak – Subota, 8:00 – 20:00</p>
+      </div>
+      <div class="page-cta-actions">
+        <a href="index.html#lokacija" class="btn-ghost">Lokacija</a>
+        <a href="index.html#kontakt" class="btn-primary">Kontakt</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Z<span>AIR</span> HOME</div>
+    <p>Bulevar revolucije G10, Bar, Crna Gora</p>
+    <p class="footer-copy">© 2026 ZAIR HOME. Sva prava zadržana.</p>
+  </footer>
+
+  <!-- LIGHTBOX (aktivan samo za kartice koje imaju pravu fotografiju) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Pregled slike">
+    <button class="lb-close" id="lb-close" aria-label="Zatvori">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="Prethodna">‹</button>
+    <img id="lb-img" src="" alt=""/>
+    <button class="lb-next" id="lb-next" aria-label="Sljedeća">›</button>
+    <p class="lb-counter" id="lb-counter"></p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
