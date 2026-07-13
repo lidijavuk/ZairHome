@@ -28,9 +28,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--white);
-  background-image: url('images/pozadina.jpg');
-  background-repeat: repeat;
+  background-color: #ede7de;
   color: var(--charcoal);
   font-family: var(--sans);
   font-size: 15px;
