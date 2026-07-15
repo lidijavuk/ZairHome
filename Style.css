@@ -616,37 +616,72 @@ nav a.nav-active {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1px;
+  gap: 20px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: none;
 }
 
 .product-card {
   background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   overflow: hidden;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(44, 36, 32, 0.05);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(44, 36, 32, 0.1);
+  transform: translateY(-2px);
 }
 
 .product-card:hover .product-img { filter: brightness(0.95); }
 .product-card:hover .product-info { background: var(--snow); }
 
 .product-img {
-  height: 164px;
+  height: 230px;
   position: relative;
   overflow: hidden;
-  background: var(--stone);
+  background: var(--mist);
   cursor: zoom-in;
-  transition: filter 0.25s;
 }
+
 .product-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transition: transform 0.35s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.4s ease;
 }
-.product-card:hover .product-img img { transform: scale(1.05); }
+
+.product-img img:first-of-type { opacity: 1; z-index: 1; }
+.product-img img:last-of-type { opacity: 0; z-index: 2; }
+.product-card:hover .product-img img:last-of-type { opacity: 1; }
+
+/* Opis materijala/uzorka koji iskrsne preko slike na hover */
+.product-img-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(44,36,32,0.7), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.product-card:hover .product-img-overlay { opacity: 1; }
+.product-img-overlay p {
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
 
 .product-img::after {
   content: '⊕';
@@ -659,6 +694,7 @@ nav a.nav-active {
   transition: opacity 0.2s, transform 0.2s;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4);
   pointer-events: none;
+  z-index: 4;
 }
 .product-card:hover .product-img::after {
   opacity: 1;
@@ -669,6 +705,7 @@ nav a.nav-active {
 .product-img.img-missing { cursor: default; }
 .product-img.img-missing img { display: none; }
 .product-img.img-missing::after { display: none; }
+.product-img.img-missing .product-img-overlay { display: none; }
 .product-img.img-missing::before {
   content: 'Dodaj fotografiju';
   position: absolute;
