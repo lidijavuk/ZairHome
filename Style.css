@@ -657,9 +657,9 @@ nav a.nav-active {
   transition: opacity 0.4s ease;
 }
 
-.product-img img:first-of-type { opacity: 1; z-index: 1; }
-.product-img img:last-of-type { opacity: 0; z-index: 2; }
-.product-card:hover .product-img img:last-of-type { opacity: 1; }
+.product-img img { opacity: 1; z-index: 1; }
+.product-img img:nth-of-type(2) { opacity: 0; z-index: 2; }
+.product-card:hover .product-img img:nth-of-type(2) { opacity: 1; }
 
 /* Opis materijala/uzorka koji iskrsne preko slike na hover */
 .product-img-overlay {

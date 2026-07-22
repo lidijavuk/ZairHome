@@ -63,29 +63,40 @@ document.addEventListener('DOMContentLoaded', () => {
     let loaded = [];
     let current = 0;
 
-    function loadedTiles() {
-      return [...document.querySelectorAll('.product-img')].filter(t => {
-        const img = t.querySelector('img');
-        return img && !t.classList.contains('img-missing') && img.complete && img.naturalWidth > 0 && t.offsetParent !== null;
+    // Sve pojedinačne slike (svaka od dvije po tepihu), ne samo prva po
+    // kartici — tako lightbox lista prolazi kroz obje slike svakog proizvoda.
+    function loadedImages() {
+      return [...document.querySelectorAll('.product-img:not(.img-missing) img')].filter(img => {
+        const tile = img.closest('.product-img');
+        return img.complete && img.naturalWidth > 0 && tile && tile.offsetParent !== null;
       });
     }
 
     function show(i) {
       if (!loaded.length) return;
       current = (i + loaded.length) % loaded.length;
-      const img = loaded[current].querySelector('img');
+      const img = loaded[current];
       lbImg.src = img.src;
       lbImg.alt = img.alt;
       lbCounter.textContent = `${current + 1} / ${loaded.length}`;
     }
-    function openFromTile(tile) {
-      loaded = loadedTiles();
-      const idx = loaded.indexOf(tile);
-      if (idx === -1) return;
+
+    function openFromTile(tile, clickedImg) {
+      loaded = loadedImages();
+      // Otvori tačno onu sliku na koju je kliknuto (ako je vidljiva/hover
+      // slika kliknuta, kreće se od nje); u suprotnom od prve slike kartice.
+      const tileImgs = [...tile.querySelectorAll('img')];
+      let idx = -1;
+      if (clickedImg) idx = loaded.indexOf(clickedImg);
+      if (idx === -1) {
+        idx = loaded.findIndex(img => tileImgs.includes(img));
+      }
+      if (idx === -1) idx = 0;
       show(idx);
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
     function close() {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
@@ -93,7 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', e => {
       const tile = e.target.closest('.product-img');
-      if (tile && !tile.classList.contains('img-missing')) openFromTile(tile);
+      if (tile && !tile.classList.contains('img-missing')) {
+        const clickedImg = e.target.tagName === 'IMG' ? e.target : null;
+        openFromTile(tile, clickedImg);
+      }
     });
 
     const btnClose = document.getElementById('lb-close');
